@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IrisApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #f6e2ff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            position: relative;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 30%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: rgb(201, 38, 201);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+        input[type="submit"]:hover {
+            background-color: rgb(95, 5, 95);
+        }
+        .flower-img {
+            max-width: 250px;
+            position: absolute; 
+            transform: translateX(100%);
+            border-radius: 4px; 
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="POST">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Iris_sanguinea.JPG" alt="Flower" class="flower-img">
+        
+        <label for="sepal_length">Sepal Length:</label>
+        <input type="text" id="sepal_length" name='sepal_length'>
+        
+        <label for="sepal_width">Sepal Width:</label>
+        <input type="text" id="sepal_width" name='sepal_width'>
+        
+        <label for="petal_length">Petal Length:</label>
+        <input type="text" id="petal_length" name='petal_length'>
+        
+        <label for="petal_width">Petal Width:</label>
+        <input type="text" id="petal_width" name='petal_width'>
+        
+        <label for="result">Class:</label>
+        <span id="result">{{result}}</span>
+        
+        <input type="submit" value='Predict'>
+    </form>
+    <script>
+        var resultSpan = document.getElementById('result');
+        var resultText = resultSpan.textContent.trim().replace(/\[|\]|'/g, '');
+        resultSpan.textContent = resultText;
+    </script>
+</body>
+</html>
